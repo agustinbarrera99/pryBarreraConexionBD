@@ -20,18 +20,29 @@ namespace pryBarreraConexionBD
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             ClassConexionDB objConectarDB = new ClassConexionDB();
-            try 
+            try
             {
                 objConectarDB.ConectarDB();
                 lblEstadoConexion.Text = "Base de datos conectada";
                 lblEstadoConexion.BackColor = Color.Green;
-            } catch {
+
+                DataTable datos = objConectarDB.ObtenerDatos("SELECT * FROM personaje");
+
+                dataGridView1.DataSource = datos;
+            }
+            catch
+            {
                 lblEstadoConexion.Text = "Error al conectar la base de datos";
                 lblEstadoConexion.BackColor = Color.Red;
             }
         }
 
         private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
