@@ -32,5 +32,40 @@ namespace pryBarreraConexionBD
 
             return tabla;
         }
+        public bool ValidarUsuario(string mail, string contrasena)
+        {
+            try
+            {
+                OleDbCommand cmd = new OleDbCommand();
+                cmd.Connection = conn;
+                cmd.CommandType = CommandType.TableDirect;
+                cmd.CommandText = "jugador";
+                OleDbDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        if (mail == reader.GetString(3) && contrasena == reader.GetString(2))
+                        {
+                            MessageBox.Show("Bienvenido " + reader.GetString(1)); 
+                            conn.Close();
+                            return true; 
+                        }
+                    }
+                }
+                conn.Close();
+                return false;
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Error: " + error.Message);
+                return false; 
+            }
+        }
     }
-}
+    }
+
+
+
+

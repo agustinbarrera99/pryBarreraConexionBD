@@ -26,7 +26,7 @@ namespace pryBarreraConexionBD
                 lblEstadoConexion.Text = "Base de datos conectada";
                 lblEstadoConexion.BackColor = Color.Green;
 
-                DataTable datos = objConectarDB.ObtenerDatos("SELECT * FROM personaje");
+                DataTable datos = objConectarDB.ObtenerDatos("SELECT * FROM jugador");
 
                 dataGridView1.DataSource = datos;
             }
